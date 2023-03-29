@@ -17,7 +17,6 @@ class ImagesPageView: UIView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         configureCollectionView()
-        imagesCollectioView.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -25,20 +24,33 @@ class ImagesPageView: UIView {
     }
     
     fileprivate func configureCollectionView(){
-        imagesCollectioView = UICollectionView(frame: frame, collectionViewLayout: setupCollectionViewLayout())
+        imagesCollectioView = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewLayout())
         imagesCollectioView.dataSource = self
         imagesCollectioView.delegate = self
-        imagesCollectioView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        imagesCollectioView.register(UINib(nibName: ImageCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
         addSubview(imagesCollectioView)
+        setupCollectionViewConstraints()
     }
     
     fileprivate func setupCollectionViewLayout()->UICollectionViewLayout{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.size.width / 2, height: frame.size.width / 2)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: frame.size.width / 2 - 10, height: frame.size.width / 2 - 5)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         return layout
     }
+    
+    fileprivate func setupCollectionViewConstraints() {
+        imagesCollectioView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imagesCollectioView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            imagesCollectioView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imagesCollectioView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imagesCollectioView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    
     
 }
 
@@ -49,8 +61,8 @@ extension ImagesPageView : UICollectionViewDataSource, UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as UICollectionViewCell
+        cell.backgroundColor = .black
         return cell
     }
     
