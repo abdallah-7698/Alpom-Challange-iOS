@@ -51,7 +51,6 @@ class ImagesPageView: UIView {
     }
     
     
-    
 }
 
 extension ImagesPageView : UICollectionViewDataSource, UICollectionViewDelegate{

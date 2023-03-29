@@ -17,6 +17,10 @@
 		B25BADF129D44F6B00B6A94D /* CollectionViewCell+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADF029D44F6A00B6A94D /* CollectionViewCell+EXT.swift */; };
 		B25BADF429D451C100B6A94D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADF229D451C100B6A94D /* ImageCell.swift */; };
 		B25BADF529D451C100B6A94D /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25BADF329D451C100B6A94D /* ImageCell.xib */; };
+		B25BADF829D4539000B6A94D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADF729D4539000B6A94D /* NetworkManager.swift */; };
+		B25BADFA29D453B900B6A94D /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADF929D453B900B6A94D /* Route.swift */; };
+		B25BADFE29D4582400B6A94D /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADFD29D4582400B6A94D /* URLRequestBuilder.swift */; };
+		B25BAE0029D45D4300B6A94D /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25BADFF29D45D4200B6A94D /* NetworkingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		B25BADF029D44F6A00B6A94D /* CollectionViewCell+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewCell+EXT.swift"; sourceTree = "<group>"; };
 		B25BADF229D451C100B6A94D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B25BADF329D451C100B6A94D /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		B25BADF729D4539000B6A94D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B25BADF929D453B900B6A94D /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B25BADFD29D4582400B6A94D /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		B25BADFF29D45D4200B6A94D /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,7 @@
 		02948DEC29CFC76D00F82F28 /* Starter Project */ = {
 			isa = PBXGroup;
 			children = (
+				B25BADF629D4537600B6A94D /* Network */,
 				B25BADEA29D44E5B00B6A94D /* CustomView */,
 				B25BADE329D439C400B6A94D /* Extension */,
 				B25BADD929D4340400B6A94D /* Core */,
@@ -143,6 +152,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B25BADF629D4537600B6A94D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B25BADF729D4539000B6A94D /* NetworkManager.swift */,
+				B25BADFD29D4582400B6A94D /* URLRequestBuilder.swift */,
+				B25BADF929D453B900B6A94D /* Route.swift */,
+				B25BADFF29D45D4200B6A94D /* NetworkingError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,10 +234,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25BADFE29D4582400B6A94D /* URLRequestBuilder.swift in Sources */,
+				B25BADFA29D453B900B6A94D /* Route.swift in Sources */,
+				B25BAE0029D45D4300B6A94D /* NetworkingError.swift in Sources */,
 				02948DEE29CFC76D00F82F28 /* AppDelegate.swift in Sources */,
 				B25BADF129D44F6B00B6A94D /* CollectionViewCell+EXT.swift in Sources */,
 				B25BADE029D4347E00B6A94D /* ImagesPageView.swift in Sources */,
 				02948DF029CFC76D00F82F28 /* SceneDelegate.swift in Sources */,
+				B25BADF829D4539000B6A94D /* NetworkManager.swift in Sources */,
 				B25BADDE29D4346A00B6A94D /* ImagesPageController.swift in Sources */,
 				B25BADF429D451C100B6A94D /* ImageCell.swift in Sources */,
 				B25BADE229D4348E00B6A94D /* Image.swift in Sources */,
