@@ -11,7 +11,13 @@ class ImagesPageView: UIView {
     
     //MARK: - IBOutlet
     fileprivate var imagesCollectioView : UICollectionView!
-    
+        
+    var imagesURL : [String?] = []  {
+        didSet{
+            print(imagesURL)
+//            imagesCollectioView.reloadData()
+        }
+    }
     
     override init(frame : CGRect) {
         super.init(frame: frame)
@@ -50,13 +56,12 @@ class ImagesPageView: UIView {
         ])
     }
     
-    
 }
 
 extension ImagesPageView : UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return imagesURL.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

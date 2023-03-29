@@ -8,35 +8,44 @@
 import UIKit
 
 class ImagesPageController: UIViewController {
-
+    
+    let mainView = ImagesPageView()
     
     override func loadView() {
         super.loadView()
-        let mainView = ImagesPageView(frame: view.frame)
+        mainView.frame = view.frame
         view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        requestData()
+        
+        requestImageURL {[weak self] result in
+            guard let self = self else {return}
+            switch result{
+            case .success(let value):
+                self.mainView.imagesURL = value.map({ $0.urls.full})
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         
     }
-
-    func requestData(){
-
+    
+    func requestImageURL(completion : @escaping(Result<[ImageModel],Error>)->Void){
         let request = URLRequestBuilder(route: .rundomPhotos)
-             .addQueryItem(name: "page", value: "1")
-             .addQueryItem(name: "order_by", value: "latest")
-             .addQueryItem(name: "count", value: "10")
-             .addQueryItem(name: "client_id", value: "Ahj-66mbyiRNL-GhTltHoIgGfkznNgv7SALhCOTLMaM")
-             .build()
+            .addQueryItem(name: "page", value: "1")
+            .addQueryItem(name: "order_by", value: "latest")
+            .addQueryItem(name: "count", value: "10")
+            .addQueryItem(name: "client_id", value: "Ahj-66mbyiRNL-GhTltHoIgGfkznNgv7SALhCOTLMaM")
+            .build()
         print(request)
         Task{
             do {
                 let photo = try await NetworkingManager.shared.execute(request: request, responseType: [ImageModel].self)
+                completion(.success(photo))
             } catch {
-                print(error)
+                completion(.failure(error))
             }
         }
     }
