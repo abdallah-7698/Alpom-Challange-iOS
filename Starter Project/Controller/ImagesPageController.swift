@@ -9,19 +9,26 @@ import UIKit
 
 class ImagesPageController: UIViewController {
     
-    let mainView = ImagesPageView()
+    var mainView : ImagesPageView!    
+    
+    private var activityIndecator = CustomIndecator()
     
     override func loadView() {
         super.loadView()
-        mainView.frame = view.frame
+        mainView = ImagesPageView(frame : view.frame)
         view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(activityIndecator)
+        activityIndecator.fillSuperview()
+        activityIndecator.start()
+        
         requestImageURL {[weak self] result in
             guard let self = self else {return}
+            self.activityIndecator.stop()
             switch result{
             case .success(let value):
                 self.mainView.imagesURL = value.map({ $0.urls.full})
@@ -29,6 +36,10 @@ class ImagesPageController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
     }
     

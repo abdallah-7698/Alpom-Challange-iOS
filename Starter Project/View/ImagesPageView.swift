@@ -11,15 +11,14 @@ class ImagesPageView: UIView {
     
     //MARK: - IBOutlet
     fileprivate var imagesCollectioView : UICollectionView!
-        
-    var imagesURL : [String?] = []  {
+    
+    var imagesURL : [String?] = [] {
         didSet{
-            print(imagesURL)
-//            imagesCollectioView.reloadData()
+            imagesCollectioView.reloadData()
         }
     }
     
-    override init(frame : CGRect) {
+    override init(frame : CGRect){
         super.init(frame: frame)
         backgroundColor = .systemBackground
         configureCollectionView()
@@ -29,6 +28,8 @@ class ImagesPageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK:  Configure UI
+    
     fileprivate func configureCollectionView(){
         imagesCollectioView = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewLayout())
         imagesCollectioView.dataSource = self
@@ -37,6 +38,8 @@ class ImagesPageView: UIView {
         addSubview(imagesCollectioView)
         setupCollectionViewConstraints()
     }
+    
+    // MARK:  layout and constraints
     
     fileprivate func setupCollectionViewLayout()->UICollectionViewLayout{
         let layout = UICollectionViewFlowLayout()
@@ -55,6 +58,7 @@ class ImagesPageView: UIView {
             imagesCollectioView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
     
 }
 
