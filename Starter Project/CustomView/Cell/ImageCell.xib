@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,26 +17,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="137" height="133"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asset 1" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-jG-CsU">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-jG-CsU">
                         <rect key="frame" x="0.0" y="0.0" width="137" height="133"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nws-bT-5Ko">
+                        <rect key="frame" x="40" y="40" width="57" height="53"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="nws-bT-5Ko" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="B7Y-aX-ALt"/>
                 <constraint firstAttribute="trailing" secondItem="nZU-jG-CsU" secondAttribute="trailing" id="BN5-W5-obc"/>
+                <constraint firstItem="nws-bT-5Ko" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="40" id="OD0-kr-ZbF"/>
                 <constraint firstItem="nZU-jG-CsU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fkW-sU-hOF"/>
                 <constraint firstAttribute="bottom" secondItem="nZU-jG-CsU" secondAttribute="bottom" id="iTd-cS-eaj"/>
+                <constraint firstAttribute="bottom" secondItem="nws-bT-5Ko" secondAttribute="bottom" constant="40" id="iae-P9-L8s"/>
+                <constraint firstAttribute="trailing" secondItem="nws-bT-5Ko" secondAttribute="trailing" constant="40" id="yDJ-0Z-MzJ"/>
                 <constraint firstItem="nZU-jG-CsU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="z0N-Yx-nJd"/>
             </constraints>
             <size key="customSize" width="137" height="133"/>
             <connections>
                 <outlet property="imageView" destination="nZU-jG-CsU" id="3Tg-h3-8X5"/>
+                <outlet property="loadingIndecator" destination="nws-bT-5Ko" id="ign-cs-CR2"/>
             </connections>
-            <point key="canvasLocation" x="124" y="61"/>
+            <point key="canvasLocation" x="123.91304347826087" y="60.602678571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Asset 1" width="594.5" height="513.5"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -10,10 +10,17 @@ import UIKit
 class ImageCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var loadingIndecator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        loadingIndecator.startAnimating()
+    }
+    
+    func setImage(from stringURL : String){
+        imageView.setImage(from: stringURL){
+            self.loadingIndecator.removeFromSuperview()
+        }
     }
 
 }
