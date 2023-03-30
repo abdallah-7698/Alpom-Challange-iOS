@@ -9,7 +9,6 @@ import UIKit
 
 class ImagesPageController: CustomDataLoadingVC {
     
-    
     var mainView : ImagesPageView!
     
     fileprivate var page : Int = 0
@@ -23,7 +22,6 @@ class ImagesPageController: CustomDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-        showLoadingView()
         getImagesURL(page: page)
     }
     
@@ -33,6 +31,7 @@ class ImagesPageController: CustomDataLoadingVC {
     }
     
     func getImagesURL(page : Int){
+        showLoadingView()
         NetworkingManager.shared.requestImageURL(page: page) {[weak self] result in
             guard let self = self else {return}
             self.dismissLoadingView()
@@ -40,8 +39,9 @@ class ImagesPageController: CustomDataLoadingVC {
             case .success(let value):
                 DispatchQueue.main.async {
                     self.mainView.imageModelArray.append(contentsOf: value)
-                }            case .failure(let error):
-                print(error.localizedDescription)
+                }
+            case .failure(let error):
+                self.showErrorAlert(with: error.localizedDescription)
             }
         }
     }

@@ -10,7 +10,6 @@ import UIKit
 class CustomDataLoadingVC: UIViewController {
 
     private var containerView : UIView!
-
     
     func showLoadingView(){
         containerView = UIView(frame: view.bounds)
@@ -35,11 +34,17 @@ class CustomDataLoadingVC: UIViewController {
     }
     
     func dismissLoadingView(){
-        //delete the wholl view (done)
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
             self.containerView = nil
         }
+    }
+    
+    func showErrorAlert(with message: String, title: String = "Error") {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
     
 }

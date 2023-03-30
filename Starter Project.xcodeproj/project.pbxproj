@@ -103,6 +103,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		B2130A4829D5FA070032C116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B25BADD829D433F900B6A94D /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +166,7 @@
 		B25BADEA29D44E5B00B6A94D /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B2130A4829D5FA070032C116 /* View */,
 				B2130A4529D5E3120032C116 /* ViewController */,
 				B25BADEB29D44E6600B6A94D /* Cell */,
 			);
