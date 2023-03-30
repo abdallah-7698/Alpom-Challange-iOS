@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ImagesPageViewProtocol : AnyObject {
+    func showFullImageViewController(image : UIImage)
+}
+
 class ImagesPageView: UIView {
     
     //MARK: - IBOutlet
     fileprivate var imagesCollectioView : UICollectionView!
+    
+    weak var delegate : ImagesPageViewProtocol?
     
     var imagesURL : [String?] = [] {
         didSet{
@@ -74,5 +80,10 @@ extension ImagesPageView : UICollectionViewDataSource, UICollectionViewDelegate{
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
+            delegate?.showFullImageViewController(image : cell.imageView.image!)
+        }
+    }
     
 }

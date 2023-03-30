@@ -21,7 +21,7 @@ class ImagesPageController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainView.delegate = self
         view.addSubview(activityIndecator)
         activityIndecator.fillSuperview()
         activityIndecator.start()
@@ -31,7 +31,7 @@ class ImagesPageController: UIViewController {
             self.activityIndecator.stop()
             switch result{
             case .success(let value):
-                self.mainView.imagesURL = value.map({ $0.urls.full})
+                self.mainView.imagesURL = value.map({ $0.urls.regular})
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -62,4 +62,11 @@ class ImagesPageController: UIViewController {
     }
     
     
+}
+
+extension ImagesPageController : ImagesPageViewProtocol  {
+    func showFullImageViewController(image: UIImage) {
+        let vc = ShowFullImageContorller(image: image)
+        present(vc, animated: true)
+    }
 }
