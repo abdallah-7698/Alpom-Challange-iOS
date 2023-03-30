@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// All the func works On Images Page Controller
+/// All the func that works On Images Page Controller 
 
 extension NetworkingManager{
     
@@ -19,7 +19,7 @@ extension NetworkingManager{
             .addQueryItem(name: "count", value: "1000")
             .addQueryItem(name: "client_id", value: "Ahj-66mbyiRNL-GhTltHoIgGfkznNgv7SALhCOTLMaM")
             .build()
-        print(request)
+        print("The API Request is : " , request)
         Task{
             do {
                 let photo = try await NetworkingManager.shared.execute(request: request, responseType: [ImageModel].self)

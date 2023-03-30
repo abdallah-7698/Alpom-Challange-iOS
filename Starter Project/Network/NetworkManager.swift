@@ -22,7 +22,6 @@ class NetworkingManager{
                     continuation.resume(throwing: NetworkingError.invalidStatusCode)
                     return
                 }
-                print(data)
                 self.prepareObject(data: data) { continuation.resume(with: $0)}
                 return
             }.resume()
@@ -36,7 +35,6 @@ class NetworkingManager{
             let decodedData = try decoder.decode(T.self, from: data)
             completion(.success(decodedData))
         }catch{
-            print(error.localizedDescription)
             completion(.failure(.failedToDecode))
         }
     }

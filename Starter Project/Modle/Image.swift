@@ -9,9 +9,7 @@ import Foundation
 
 // MARK: - ImageModelElement
 struct ImageModel : Codable {
-
     let urls: Urls
-   
 }
 
 
