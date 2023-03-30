@@ -43,7 +43,6 @@ class NetworkingManager{
     
     func downloadImage(from urlString : String , completion : @escaping (UIImage?)-> Void){
         
-        
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey){

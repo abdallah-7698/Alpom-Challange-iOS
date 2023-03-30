@@ -27,17 +27,18 @@ class ImageCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var loadingIndecator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingIndecator: UIActivityIndicatorView?
     
 
     
     func setImage(from stringURL : String){
-        loadingIndecator.startAnimating()
+        loadingIndecator?.startAnimating()
         isUserInteractionEnabled = false
-        imageView.setImage(from: stringURL){
+        imageView.setImage(from: stringURL) { [weak self] in
+            guard let self = self else { return }
             self.isUserInteractionEnabled = true
-            self.loadingIndecator.stopAnimating()
-            self.loadingIndecator.removeFromSuperview()
+            self.loadingIndecator?.stopAnimating()
+            self.loadingIndecator?.removeFromSuperview()
         }
     }
     

@@ -8,17 +8,17 @@
 import UIKit
 
 protocol ImagesPageViewProtocol : AnyObject {
-    func showFullImageViewController(image : UIImage)
+    func showFullImageViewController(fullImageStringURL : String)
+    func getMoreImages()
 }
 
 class ImagesPageView: UIView {
     
     //MARK: - IBOutlet
     fileprivate var imagesCollectioView : UICollectionView!
-    
     weak var delegate : ImagesPageViewProtocol?
     
-    var imagesURL : [String?] = [] {
+    var imageModelArray : [ImageModel] = [] {
         didSet{
             imagesCollectioView.reloadData()
         }
@@ -71,19 +71,28 @@ class ImagesPageView: UIView {
 extension ImagesPageView : UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesURL.count
+        return imageModelArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
-        cell.setImage(from: imagesURL[indexPath.row]!)
+        cell.setImage(from: imageModelArray[indexPath.row].urls.thumb!)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
-            delegate?.showFullImageViewController(image : cell.imageView.image!)
+        delegate?.showFullImageViewController(fullImageStringURL : imageModelArray[indexPath.row].urls.full!)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height - 500 {
+            delegate?.getMoreImages()
         }
+        
     }
     
 }

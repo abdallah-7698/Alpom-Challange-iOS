@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ShowFullImageContorller : UIViewController{
+class ShowFullImageContorller : CustomDataLoadingVC{
     
     private let imageView : UIImageView = {
         let imageView = UIImageView()
@@ -17,10 +17,10 @@ class ShowFullImageContorller : UIViewController{
         return imageView
     }()
     
-    init(image : UIImage){
+    init(imageURL : String){
         super.init(nibName: nil, bundle: nil)
         configureUI()
-        imageView.image = image
+        setImage(from: imageURL)
     }
     
     required init?(coder: NSCoder) {
@@ -31,6 +31,14 @@ class ShowFullImageContorller : UIViewController{
         view.backgroundColor = .systemBackground
         view.addSubview(imageView)
         imageView.fillSuperview()
+    }
+    
+    fileprivate func setImage(from imageURL: String){
+        showLoadingView()
+        imageView.setImage(from: imageURL) { [weak self] in
+            guard let self = self else {return}
+            self.dismissLoadingView()
+        }
     }
     
 }
